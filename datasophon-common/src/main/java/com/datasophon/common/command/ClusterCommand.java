@@ -1,4 +1,3 @@
-
 /*
  *  Licensed to the Apache Software Foundation (ASF) under one or more
  *  contributor license agreements.  See the NOTICE file distributed with
@@ -16,18 +15,28 @@
  *  limitations under the License.
  */
 
-package com.datasophon.common.model.alert;
+package com.datasophon.common.command;
+
+import com.datasophon.common.enums.ClusterCommandType;
+
+import java.io.Serializable;
 
 import lombok.Data;
 
 @Data
-public class AlertLabels {
+public class ClusterCommand implements Serializable {
 
-    private String alertname;
-    private int clusterId;
-    private String serviceRoleName;
-    private String instance;
-    private String job;
-    private String severity;
+    private final ClusterCommandType commandType;
+
+    private Integer clusterId;
+
+    public ClusterCommand(ClusterCommandType commandType) {
+        this.commandType = commandType;
+    }
+
+    public ClusterCommand(ClusterCommandType commandType, Integer clusterId) {
+        this.commandType = commandType;
+        this.clusterId = clusterId;
+    }
 
 }
