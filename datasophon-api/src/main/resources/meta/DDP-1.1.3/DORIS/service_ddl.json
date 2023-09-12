@@ -2,11 +2,11 @@
   "name": "DORIS",
   "label": "Doris",
   "description": "简单易用、高性能和统一的分析数据库",
-  "version": "1.2.6",
+  "version": "2.0.0",
   "sortNum": 20,
   "dependencies":[],
-  "packageName": "doris-1.2.6.tar.gz",
-  "decompressPackageName": "doris-1.2.6",
+  "packageName": "doris-2.0.0.tar.gz",
+  "decompressPackageName": "doris-2.0.0",
   "roles": [
     {
       "name": "DorisFE",
@@ -41,6 +41,35 @@
         "name": "FE UI",
         "label": "FE UI",
         "url": "http://${host}:18030"
+      }
+    },
+    {
+      "name": "DorisFEObserver",
+      "label": "DorisFEObserver",
+      "roleType": "worker",
+      "logFile": "fe/log/fe.log",
+      "jmxPort": 18031,
+      "startRunner": {
+        "timeout": "60",
+        "program": "fe/bin/start_fe.sh",
+        "args": [
+          "--daemon"
+        ]
+      },
+      "stopRunner": {
+        "timeout": "600",
+        "program": "fe/bin/stop_fe.sh",
+        "args": [
+          "--daemon"
+        ]
+      },
+      "statusRunner": {
+        "timeout": "60",
+        "program": "fe/bin/status_fe.sh",
+        "args": [
+          "status",
+          "fe"
+        ]
       }
     },
     {
@@ -276,11 +305,13 @@
       "configType": "path",
       "separator": ";",
       "required": true,
-      "type": "input",
-      "value": "",
+      "type": "multiple",
+      "value": [
+        "/data/be/storage"
+      ],
       "configurableInWizard": true,
       "hidden": false,
-      "defaultValue": "/data/be/storage"
+      "defaultValue": ""
     },
     {
       "name": "mem_limit",

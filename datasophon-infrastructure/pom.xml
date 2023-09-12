@@ -24,7 +24,7 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>datasophon-dao</artifactId>
+    <artifactId>datasophon-infrastructure</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -49,6 +49,12 @@
             <artifactId>datasophon-domain</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>icu.mhb</groupId>
+            <artifactId>mybatis-plus-join</artifactId>
+            <version>${mybatis-plus-join}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
